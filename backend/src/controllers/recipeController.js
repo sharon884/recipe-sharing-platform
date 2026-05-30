@@ -1,5 +1,6 @@
 import Recipe from "../models/Recipe.js";
 import { STATUS_CODES } from "../constants/statusCodes.js";
+import mongoose from "mongoose";
 
 const createRecipe = async (req, res) => {
     try {
