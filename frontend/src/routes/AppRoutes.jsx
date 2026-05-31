@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Navbar from "../components/Navbar";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
@@ -10,6 +11,7 @@ import EditRecipe from "../pages/EditRecipe";
 const AppRoutes = () => {
     return (
         <BrowserRouter>
+            <Navbar />
             <Routes>
 
                 <Route

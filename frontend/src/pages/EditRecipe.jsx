@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import {
    getRecipeById,
@@ -103,25 +103,35 @@ const EditRecipe = () => {
 
    if (loading) {
       return (
-         <div className="container mt-5">
-            <h3>Loading...</h3>
+         <div className="container mt-5 py-5 text-center">
+            <div className="spinner-border text-orange" style={{ color: "var(--primary)" }} role="status">
+               <span className="visually-hidden">Loading...</span>
+            </div>
+            <h5 className="mt-3 text-muted">Loading Recipe Details...</h5>
          </div>
       );
    }
 
    return (
-      <div className="container mt-5">
+      <div className="container mt-4 pb-5">
+         <div className="d-flex align-items-center mb-4">
+            <Link to={`/recipes/${id}`} className="btn btn-recipe-outline shadow-sm d-flex align-items-center gap-1">
+               <span>←</span> Back to Recipe
+            </Link>
+         </div>
+
          <div className="row justify-content-center">
             <div className="col-md-8">
-               <div className="card">
+               <div className="card border-0 shadow-md p-3" style={{ borderRadius: "var(--radius-md)" }}>
                   <div className="card-body">
 
-                     <h2 className="mb-4">
+                     <h2 className="fw-bold mb-2">
                         Edit Recipe
                      </h2>
+                     <p className="text-muted small mb-4">Modify the recipe title, ingredients, or cooking steps below.</p>
 
                      {error && (
-                        <div className="alert alert-danger">
+                        <div className="alert alert-danger py-2 px-3 small rounded mb-4">
                            {error}
                         </div>
                      )}
@@ -133,7 +143,7 @@ const EditRecipe = () => {
                      >
                         <div className="mb-3">
                            <label className="form-label">
-                              Title
+                              Recipe Title
                            </label>
 
                            <input
@@ -167,11 +177,12 @@ const EditRecipe = () => {
                               }
                               required
                            />
+                           <div className="form-text text-muted small mt-1">Please enter each ingredient on a new line.</div>
                         </div>
 
-                        <div className="mb-3">
+                        <div className="mb-4">
                            <label className="form-label">
-                              Instructions
+                              Cooking Instructions
                            </label>
 
                            <textarea
@@ -188,12 +199,17 @@ const EditRecipe = () => {
                            />
                         </div>
 
-                        <button
-                           type="submit"
-                           className="btn btn-warning"
-                        >
-                           Update Recipe
-                        </button>
+                        <div className="d-flex gap-2">
+                           <button
+                              type="submit"
+                              className="btn btn-recipe-primary px-4 py-2 shadow-sm"
+                           >
+                              Update Recipe
+                           </button>
+                           <Link to={`/recipes/${id}`} className="btn btn-recipe-outline px-4 py-2">
+                              Cancel
+                           </Link>
+                        </div>
 
                      </form>
 
