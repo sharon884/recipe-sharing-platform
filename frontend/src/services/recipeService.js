@@ -31,7 +31,7 @@ export const createRecipe = async (
    return response.data;
 };
 
-// Update recipe
+
 export const updateRecipe = async (
    id,
    recipeData
